@@ -12,14 +12,36 @@ $('#title').change( e => {
 
 $('#design').change( e => {
     if(e.target.value === 'js puns'){
-        //$('#color').
+        $('#color option[value ="cornflowerblue"').show().attr('selected', 'selected');
+        $('#color option[value ="darkslategrey"').show();
+        $('#color option[value ="gold"').show();
+        $('#color option[value ="tomato"').hide().removeAttr('selected');
+        $('#color option[value ="steelblue"').hide();
+        $('#color option[value ="dimgrey"').hide();
     }
     else if (e.target.value === 'heart js'){
-        console.log(e.target.value);   
+        $('#color option[value ="cornflowerblue"').hide().removeAttr('selected');
+        $('#color option[value ="darkslategrey"').hide();
+        $('#color option[value ="gold"').hide();
+        $('#color option[value ="tomato"').show().attr('selected', 'selected');
+        $('#color option[value ="steelblue"').show();
+        $('#color option[value ="dimgrey"').show();
+        
     }
     else {
-        console.log(e.target.value);
+        resetColorValues();
     }
 });
+
+function resetColorValues(){
+    $('#color option[value ="cornflowerblue"').show().attr('selected', 'selected');
+    $('#color option[value ="darkslategrey"').show();
+    $('#color option[value ="gold"').show();
+    $('#color option[value ="tomato"').show().removeAttr('selected');
+    $('#color option[value ="steelblue"').show();
+    $('#color option[value ="dimgrey"').show();
+}
+
+
 
 
