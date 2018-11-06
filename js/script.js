@@ -103,9 +103,7 @@ $('.activities').change( e => {
              total -= 100;
          }
      }
-
     $('#total').text(total);
-
 });
 
 
