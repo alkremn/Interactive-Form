@@ -1,8 +1,14 @@
-$('#name').focus();
-$('#other-title').hide();
-$('#colors-js-puns').hide();
 let total = 0;
-$('#payment option[value ="select_method"').attr('disabled', 'disabled');
+$(document).ready(function() {
+    $('#name').focus();
+    $('#other-title').hide();
+    $('#colors-js-puns').hide();
+    $('#payment option[value ="select_method"').attr('disabled', 'disabled');
+    $('#payment option[value ="credit card"').attr('selected', true);
+    hideAllPaymentDivs($('#credit-card'));
+    $('#credit-card').show();
+});
+
 $('#title').change( e => {
     if(e.target.value === 'other'){
         $('#other-title').show();
@@ -228,18 +234,27 @@ function isCvvValid(cvv){
 }
 
 $('form').on('submit', (e) =>{
-    e.preventDefault();
     const nameValid = nameCheck();
     const emailValid = emailCheck();
     const checkBoxChecked = validateCheckBox();
-    if(nameValid && emailValid && checkBoxChecked){
-       if($('#payment').val() === 'credit card'){
-            validateCreditCard();
-        }
+    let validCard = false;
+    if($('#payment').val() === 'credit card'){
+        validCard = validateCreditCard();
     }
-
-    
+    else{
+        validCard = true;
+    }
+    if(!nameValid && !emailValid && !checkBoxChecked && !validCard){
+        return false;
+    }
 });
+
+function validateCreditCard(){
+    const validCard = ccNumCheck(); 
+    const validZip = zipCheck();
+    const validCvv = cvvCheck();
+    return validCard && validZip && validCvv;
+}
 
 function validateCheckBox(){
     const activities =  $('input[type="checkbox"]');
